@@ -18,11 +18,13 @@ Master master = Master(chargingSlaves,
                        start_chg,
                        end_chg);
 
+
 void setup()
 {
   // put your setup code here, to run once:
   master.begin();
   Serial.begin(115200);
+  Serial.printf("NodeID '%u'\n", master.communication.getNodeId());
 }
 
 void loop()
