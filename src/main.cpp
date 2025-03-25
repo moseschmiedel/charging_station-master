@@ -6,10 +6,12 @@
 void start_chg(Master* master, SlaveData &slave)
 {
   Serial.printf("Execute 'start_chg for slave %u'\n", slave.id);
+  master->enjoinCharge(slave);
 }
 void end_chg(Master* master, SlaveData &slave)
 {
   Serial.printf("Execute 'end_chg for slave %u'\n", slave.id);
+  master->cancelCharge(slave);
 }
 
 auto chargingSlaves = Fifo<SlaveData *>();
@@ -22,6 +24,7 @@ Master master = Master(chargingSlaves,
 void setup()
 {
   // put your setup code here, to run once:
+  delay(1000);
   master.begin();
   Serial.begin(115200);
   Serial.printf("NodeID '%u'\n", master.communication.getNodeId());
