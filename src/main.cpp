@@ -3,14 +3,14 @@
 #include <autocharge/Autocharge.hpp>
 
 // put function declarations here:
-void start_chg(Master* master, SlaveData &slave)
+void start_chg(Master* master, SlaveData *slave)
 {
-  Serial.printf("Execute 'start_chg for slave %u'\n", slave.id);
+  Serial.printf("Execute 'start_chg for slave %u'\n", slave->id);
   master->enjoinCharge(slave);
 }
-void end_chg(Master* master, SlaveData &slave)
+void end_chg(Master* master, SlaveData *slave)
 {
-  Serial.printf("Execute 'end_chg for slave %u'\n", slave.id);
+  Serial.printf("Execute 'end_chg for slave %u'\n", slave->id);
   master->cancelCharge(slave);
 }
 
@@ -32,7 +32,5 @@ void setup()
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
-  delay(1000);
   master.step();
 }
